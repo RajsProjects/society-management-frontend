@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, keepPreviousData } from '@tanstack/react-query'
 import { extractPageContent, extractPageMeta } from '../utils/format'
 
 const DEFAULT_LIST_PARAMS = { page: 0, size: 50 }
@@ -12,6 +12,7 @@ export function useListQuery({ queryKey, queryFn, params = {}, enabled = true })
     enabled,
     staleTime: 30_000,
     refetchOnWindowFocus: true,
+    placeholderData: keepPreviousData,
   })
 
   return {
